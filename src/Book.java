@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Book {
 
     private String title;
@@ -5,6 +7,7 @@ public class Book {
     private String description;
     private double price;
     private String isInStock;
+    private int quantity;
 
     public Book(){
 
@@ -40,9 +43,21 @@ public class Book {
         this.description = description;
         return description;
     }
-    public double getPrice(){
+    //Prompts user for book quantity when getPrice is called
+    //and multiplies that number by the set book price.
+    public double getPrice(String isInStock){
+        Scanner scn = new Scanner(System.in);
+        if(isInStock.equalsIgnoreCase("Available")) {
+            System.out.println("Enter quantity: ");
+            int quantity = scn.nextInt();
+            price *= quantity;
+        }
+        else{
+            System.out.println("Currently "+isInStock);
+        }
         return price;
     }
+
     public double setPrice(double price){
         this.price = price;
         return price;
